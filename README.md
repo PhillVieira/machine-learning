@@ -27,6 +27,13 @@ basta copiar e colar no caminho **"raiz/final_build/resources/python/output/"**,
 
 Arquivo presente na raiz do projeto **caracteristicas.arff** se trata dos dados de treino já extraidos para um padrão de arquivo, pronto para leitura através do programa Weka.
 
+## Imagens Utilizadas
+
+Imagens que foram utilizadas estão nos diretórios:
+
+- **"./python/images/"**
+- **"./final_build/resources/python/images/"**
+
 ## Instalação
 
 Windows & Linux
