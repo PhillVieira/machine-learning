@@ -9,7 +9,7 @@ Projeto desenvolvido se trata de um estudo de machine learning, o qual tem objet
 - React Js
 - Python
 
-**Personagens Selecionados para estudo: Simpsons - Milhouse e Apu**
+**Personagens Selecionados para estudo:Os Simpsons - Milhouse e Apu**
 
 Funcionamento de interface desenvolvido utilizando Electron Js com conteúdo renderizado em React Js c/ (Typescript);
 Funcionamento de processamento de imagens utilizando Python e algumas bibliotecas externas;
