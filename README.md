@@ -4,7 +4,7 @@
 
 Projeto desenvolvido se trata de um estudo de machine learning, o qual tem objetivo de treinar através de uma base de imagens e identificar dois personagens utilizando de técnicas passadas em aula.
 
-## Stack Utilizada :shipit:
+## Stack Utilizada
 - Electron
 - React Js
 - Python
@@ -14,7 +14,7 @@ Projeto desenvolvido se trata de um estudo de machine learning, o qual tem objet
 Funcionamento de interface desenvolvido utilizando Electron Js com conteúdo renderizado em React Js c/ (Typescript);
 Funcionamento de processamento de imagens utilizando Python e algumas bibliotecas externas;
 
-## Executável
+## Executável :shipit:
 
 Na pasta **final_build** está a versão final do build, o qual é possivel executar o **machine-learning.exe**
 - Caso não queira executar o treinamento: 
