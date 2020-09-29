@@ -49,6 +49,7 @@ npm start
 ## Build
 
 É possivel gerar uma versão executavel, para isso utilize dos comandos abaixo.
+O mesmo gera o build completo no diretório "electron/dist/"
 **Comando deve ser executado dentro da pasta "electron".**
 ```sh
 npm run build
