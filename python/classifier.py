@@ -25,7 +25,7 @@ class Classifier:
         features, classes = [], []
 
         for image in self.__data:
-            features.append(image[0:5])
+            features.append(image[0:6])
             classes.append(image[6])
 
         self.__labels = np.unique(classes)
@@ -53,7 +53,7 @@ class Classifier:
         final_features, final_labels = self.load_dataset()
 
         X_train, X_test, y_train, y_test = model_selection.train_test_split(
-            np.array(final_features), np.array(final_labels), test_size=0.35, train_size=0.65
+            np.array(final_features), np.array(final_labels), train_size=1
         )
 
         model = naive_bayes.GaussianNB()
@@ -70,7 +70,7 @@ class Classifier:
         final_features, final_labels = self.load_dataset()
 
         X_train, X_test, y_train, y_test = model_selection.train_test_split(
-            np.array(final_features), np.array(final_labels), test_size=0.35, train_size=0.65
+            np.array(final_features), np.array(final_labels), train_size=1
         )
 
         model = tree.DecisionTreeClassifier()
@@ -162,7 +162,7 @@ class Classifier:
 
         scaler = preprocessing.MinMaxScaler(feature_range=(0, 1))
         rescaled_feature = scaler.fit_transform(
-            np.array(features_from_img[0:5]).reshape(-1, 1))
+            np.array(features_from_img[0:6]).reshape(-1, 1))
 
         predict = model.predict(X_test)
         prediction = model.predict(rescaled_feature.reshape(1, -1))[0]
