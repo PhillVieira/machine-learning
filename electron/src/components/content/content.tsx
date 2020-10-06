@@ -22,6 +22,7 @@ export interface IContentState {
   loading: boolean;
   loadingClassify: boolean;
   timer?: number;
+  classifType: string;
 }
 
 export default class Content extends React.Component<
@@ -34,7 +35,8 @@ export default class Content extends React.Component<
       ipcRenderer: null,
       loading: false,
       loadingClassify: false,
-      timer: 0
+      timer: 0,
+      classifType: ""
     };
   }
   componentDidMount() {
@@ -110,8 +112,17 @@ export default class Content extends React.Component<
     const { ipcRenderer, image } = this.state;
 
     if (typeof image == "object") {
-      this.setState({ loadingClassify: true }, () => {
+      this.setState({ classifType: "Naive-Bayes", loadingClassify: true }, () => {
         ipcRenderer.send("classify-image", { data: image.path });
+      });
+    }
+  };
+  classifyTreeAction = () => {
+    const { ipcRenderer, image } = this.state;
+
+    if (typeof image == "object") {
+      this.setState({ classifType: "Decision-Tree", loadingClassify: true }, () => {
+        ipcRenderer.send("classify-image-tree", { data: image.path });
       });
     }
   };
@@ -133,7 +144,8 @@ export default class Content extends React.Component<
       loadingClassify,
       confusionMatrix,
       features,
-      timer
+      timer,
+      classifType
     } = this.state;
     return (
       <ContentWrapper>
@@ -141,7 +153,10 @@ export default class Content extends React.Component<
           <ImageSelector changeImage={this.handleImage} />
           {image ? (
             !loadingClassify ? (
-              <Btn onClick={() => this.classifyAction()}>Classificar</Btn>
+              <>
+                <Btn onClick={() => this.classifyAction()}>Classificar</Btn>
+                <Btn onClick={() => this.classifyTreeAction()}>Classificar Árvore</Btn>
+              </>
             ) : (
                 <DisableBtn>Processando Imagem...</DisableBtn>
               )
@@ -150,7 +165,7 @@ export default class Content extends React.Component<
             )}
         </LeftContent>
         <RightContent>
-          <Feature loadingData={loadingClassify} data={features} />
+          <Feature type={classifType} loadingData={loadingClassify} data={features} />
           {confusionMatrix ? (
             <ImageMatrix src={confusionMatrix} />
           ) : loading ? (

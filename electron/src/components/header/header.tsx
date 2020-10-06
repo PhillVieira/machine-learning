@@ -52,6 +52,14 @@ export default class Header extends React.Component<
     });
   };
 
+  openTreeTrainingMode = () => {
+    const { ipcRenderer } = this.state;
+
+    this.setState({ loading: true }, () => {
+      ipcRenderer.send("open-training-tree");
+    });
+  };
+
   exitApp = () => {
     const { ipcRenderer } = this.state;
     ipcRenderer.send("close-program", "ping");
@@ -67,7 +75,14 @@ export default class Header extends React.Component<
             disabled={this.state.loading}
             useMinWidth={true}
           >
-            {!this.state.loading ? "Executar Treinamento" : "Em treinamento..."}
+            {!this.state.loading ? "Treinamento Naive Bayes" : "Em treinamento..."}
+          </NavButton>
+          <NavButton
+            onClick={this.openTreeTrainingMode}
+            disabled={this.state.loading}
+            useMinWidth={true}
+          >
+            {!this.state.loading ? "Treinamento Árvore de Decisão" : "Em treinamento..."}
           </NavButton>
         </GroupButtons>
         <NavButton onClick={() => this.exitApp()}>

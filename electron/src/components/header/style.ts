@@ -36,7 +36,7 @@ export const Bar = styled.div`
 
 export const GroupButtons = styled.div`
   display: flex;
-  width: 200px;
+  width: 500px;
   justify-content: space-around;
 `;
 

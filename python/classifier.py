@@ -4,7 +4,6 @@ import json
 import os
 import sys
 import urllib
-from itertools import chain
 
 import h5py
 import matplotlib.pyplot as plt
@@ -84,13 +83,13 @@ class Classifier:
 
         # Tree
         print(tree.plot_tree(model))
-
     # https://scikit-learn.org/stable/auto_examples/model_selection/plot_confusion_matrix.html#sphx-glr-auto-examples-model-selection-plot-confusion-matrix-py
+
     def confusion_matrix(self, model, x_test, y_test):
         title = "Matriz de confusão"
 
         disp = metrics.plot_confusion_matrix(
-            model, x_test, y_test, cmap=plt.cm.Blues)
+            model, x_test, y_test, cmap=plt.cm.Greys)
 
         disp.ax_.set_title(title)
 
@@ -112,6 +111,7 @@ class Classifier:
         print(json.dumps(confusion_matrix))
 
     def confusion_matrix2(self, model, x_train, y_train):
+        # TODO: VERIFICAR PARAMETROS
         y_pred = model.predict(x_train)
         cf_matrix = metrics.confusion_matrix(y_train, y_pred)
 
@@ -177,24 +177,23 @@ class Classifier:
 
         X_train, X_test, y_train, y_test = model_selection.train_test_split(
             final_features, final_labels, test_size=0.35, train_size=0.65
-        )  # use 65% for training and 35% for tests
+        )
 
-        prediction, features_from_img, accuracy = self.predict(model,
-                                                               img, X_train, X_test, y_train, y_test)
+        prediction, featuresFromImg, accuracy = self.predict(model,
+                                                             img, X_train, X_test, y_train, y_test)
 
-        label = 'Apu'  # 0.0
+        label = 'Milhouse'
         if prediction:
-            label = 'Marge'  # 1.0
+            label = 'Apu'
 
-        # API send
         print(json.dumps({
             'features': {
-                'Apu body': features_from_img[0],
-                'Apu pants': features_from_img[1],
-                'Apu shirt': features_from_img[2],
-                'Marge body': features_from_img[3],
-                'Marge hair': features_from_img[4],
-                'Marge dress': features_from_img[5]
+                'Milhouse Blue Hair': featuresFromImg[0],
+                'Milhouse Pink Shirt': featuresFromImg[1],
+                'Milhouse Red Shorts ': featuresFromImg[2],
+                'Apu Brown Skin': featuresFromImg[3],
+                'Apu Green Jacket': featuresFromImg[4],
+                'Apu Yellow Pants': featuresFromImg[5]
             },
             'prediction': {
                 'accuracy': accuracy,

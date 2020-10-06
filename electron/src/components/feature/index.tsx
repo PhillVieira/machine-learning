@@ -3,6 +3,7 @@ import * as S from "./styles";
 
 interface Props {
   data?: any;
+  type?: string;
   loadingData: boolean;
 }
 
@@ -11,7 +12,7 @@ interface Characteristics {
   value: number;
 }
 
-const Feature: React.FC<Props> = ({ data, loadingData }) => {
+const Feature: React.FC<Props> = ({ type, data, loadingData }) => {
   const [characteristics, setCharacteristics] = useState([]);
   const [predictionResult, setPredictionResult] = useState({
     accuracy: 0,
@@ -38,7 +39,7 @@ const Feature: React.FC<Props> = ({ data, loadingData }) => {
     <S.Container>
       {!loadingData ?
         <S.Content>
-          <header>Características</header>
+          <header>Características {type}</header>
           <S.Wrapper>
 
             <div>

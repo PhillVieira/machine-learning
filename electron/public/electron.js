@@ -49,6 +49,21 @@ class Main {
       });
     });
 
+    ipcMain.on("open-training-tree", (event, args) => {
+      event.reply("starting-training", "timer");
+      let pyshell = new PythonShell("open_training.py", {
+        mode: "text",
+        args: ['decision-tree'],
+        pythonPath: "python",
+        scriptPath: path.join(__dirname, "../../python"),
+      });
+
+      pyshell.on("message", function (results) {
+        console.log(results);
+        event.reply("python-training", results);
+      });
+    });
+
     ipcMain.on("classify-image", (event, args) => {
       const { data } = args;
 
@@ -56,6 +71,21 @@ class Main {
         mode: "text",
         pythonPath: "python",
         args: [data],
+        scriptPath: path.join(__dirname, "../../python"),
+      });
+
+      pyshell.on("message", function (results) {
+        event.reply("python-events", results);
+      });
+    });
+
+    ipcMain.on("classify-image-tree", (event, args) => {
+      const { data } = args;
+
+      let pyshell = new PythonShell("classify_image.py", {
+        mode: "text",
+        pythonPath: "python",
+        args: [data, 'decision-tree'],
         scriptPath: path.join(__dirname, "../../python"),
       });
 
