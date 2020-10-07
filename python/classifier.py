@@ -53,7 +53,7 @@ class Classifier:
         final_features, final_labels = self.load_dataset()
 
         X_train, X_test, y_train, y_test = model_selection.train_test_split(
-            np.array(final_features), np.array(final_labels), train_size=1
+            np.array(final_features), np.array(final_labels)
         )
 
         model = naive_bayes.GaussianNB()
@@ -70,7 +70,7 @@ class Classifier:
         final_features, final_labels = self.load_dataset()
 
         X_train, X_test, y_train, y_test = model_selection.train_test_split(
-            np.array(final_features), np.array(final_labels), train_size=1
+            np.array(final_features), np.array(final_labels)
         )
 
         model = tree.DecisionTreeClassifier()
